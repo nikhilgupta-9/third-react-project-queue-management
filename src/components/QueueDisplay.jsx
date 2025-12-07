@@ -1,6 +1,6 @@
 import React from 'react'
 
-const QueueDisplay = (queue, onUpdateStatus, onRemove) => {
+const QueueDisplay = ({queue, onUpdateStatus, onRemove}) => {
     const getStatusColor = (status) =>{
         switch(status){
             case "waiting":
@@ -25,6 +25,19 @@ const QueueDisplay = (queue, onUpdateStatus, onRemove) => {
                         <div className='customer-info'>
                             <h3>{customer.name}</h3>
                             <p>{customer.service}</p>
+                            <span className='status'
+                            style={{color: getStatusColor(customer.status)}}
+                            >
+                             {customer.status}
+                            </span>
+                        </div>
+                        <div className='action'>
+                            {customer.status === "waiting" && (
+                                <button className='serve-btn'
+                                onClick={()=> onUpdateStatus(customer.id, 'serving')}
+                                >Serve</button>
+
+                            )}
                         </div>
                     </div>
                 ))}
