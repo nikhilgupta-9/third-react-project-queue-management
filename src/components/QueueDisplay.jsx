@@ -38,6 +38,16 @@ const QueueDisplay = ({queue, onUpdateStatus, onRemove}) => {
                                 >Serve</button>
 
                             )}
+                            {customer.status === "serving" && (
+                                <button className='complete-btn'
+                                onClick={()=> onUpdateStatus(customer.id, 'completed')}
+                                >Serve</button>
+
+                            )}
+                            <button 
+                            className='remove-btn'
+                            onClick={()=>onRemove(customer.id)}
+                            >Remove </button>
                         </div>
                     </div>
                 ))}
